@@ -202,7 +202,7 @@ asset.server = function(ctx) {
                         url: 'import_process',
                         path: 'import_process.jag'
                     },{
-                        title: 'Predictions: ',
+                        title: 'Prediction',
                         url: 'predict',
                         path: 'predict.jag'
                     },{
