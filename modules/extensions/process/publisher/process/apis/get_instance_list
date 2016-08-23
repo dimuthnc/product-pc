@@ -15,19 +15,23 @@ var log = new Log();
 if (log.isDebugEnabled()) {
     log.debug("INSIDE get instance list...");
 }
-var ins = new InstanceServices("admin","admin","https://localhost:9448");
+var ins = new InstanceServices();
 
 
 var responseObj = {};
 try {
+    log.info("Inside try");
 
     var Data = ins.getInstanceList();
-    
+
     if (log.isDebugEnabled()) {
         log.debug(bpmnData);
     }
     responseObj.error = false;
-    responseObj.content = bpmnData;
+    responseObj.content = Data;
+    if(Data=null){
+        log.info("Return null")
+    }
     print(stringify(responseObj));
 } catch (error) {
     log.info("Error   "+error.toString())
