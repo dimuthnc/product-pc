@@ -26,6 +26,10 @@ asset.server = function(ctx) {
         onUserLoggedIn: function() {},
         endpoints: {
             apis: [{
+                       url: 'predict',
+                       path: 'get_instance_list.jag'
+                    },
+                   {
                        url: 'assets',
                        path: 'assets.jag'
                    }, {
@@ -144,7 +148,13 @@ asset.server = function(ctx) {
                         path: 'get_process_deployed_id.jag'
                    }
             ],
-            pages: [{
+            pages: [
+                        {
+                        title: 'Prediction',
+                        url: 'predict',
+                        path: 'predict.jag'
+                    },
+                       {
                         title: 'Asset: ' + typeSingularLabel,
                         url: 'asset',
                         path: 'asset.jag'
