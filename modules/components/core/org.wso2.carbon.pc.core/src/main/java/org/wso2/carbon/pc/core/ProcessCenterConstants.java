@@ -69,6 +69,7 @@ public class ProcessCenterConstants {
     public static final String AUTHENTICATION_ADMIN = "AuthenticationAdmin";
     public static final String BPMN_UPLOADER_SERVICE = "BPMNUploaderService";
     public static final String BPMN_DEPLOYMENT_SERVICE = "BPMNDeploymentService";
+    public static final String BPMN_INSTANCE_SERVICE = "BPMNInstanceService";
     /**
      * Assets Storage
      **/

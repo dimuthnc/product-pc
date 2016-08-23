@@ -26,7 +26,7 @@ asset.server = function(ctx) {
         onUserLoggedIn: function() {},
         endpoints: {
             apis: [{
-                       url: 'predict',
+                       url: 'instance',
                        path: 'get_instance_list.jag'
                     },
                    {
@@ -61,7 +61,7 @@ asset.server = function(ctx) {
                        path: 'statistics.jag'
                    }, {
                        url: 'get_process_list',
-                       path: 'get_process_list.jag'
+                       path: 'get_instance_list.jag'
                    }, {
                        url: 'update_subprocess',
                        path: 'update_subprocess.jag'

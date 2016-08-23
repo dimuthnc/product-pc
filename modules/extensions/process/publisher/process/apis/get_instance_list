@@ -1,0 +1,38 @@
+<%
+
+
+
+
+importPackage(org.wso2.carbon.pc.core);
+
+
+
+
+
+
+var log = new Log();
+
+if (log.isDebugEnabled()) {
+    log.debug("INSIDE get instance list...");
+}
+var ins = new Instance("admin","admin","https://localhost:9448");
+
+
+var responseObj = {};
+try {
+
+    var Data = ins.getInstanceList();
+    var Data = ins.getInstanceList();
+    if (log.isDebugEnabled()) {
+        log.debug(bpmnData);
+    }
+    responseObj.error = false;
+    responseObj.content = bpmnData;
+    print(stringify(responseObj));
+} catch (error) {
+    log.info("Error   "+error.toString())
+    responseObj.error = true;
+    responseObj.content = "Instance List content retrieving error.";
+    print(stringify(responseObj));
+}
+%>

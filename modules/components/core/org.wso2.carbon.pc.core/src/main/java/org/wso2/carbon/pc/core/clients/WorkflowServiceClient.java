@@ -23,9 +23,12 @@ import org.apache.axis2.context.ConfigurationContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.wso2.carbon.bpmn.core.mgt.model.xsd.BPMNDeployment;
+import org.wso2.carbon.bpmn.core.mgt.model.xsd.BPMNInstance;
 import org.wso2.carbon.bpmn.core.mgt.model.xsd.BPMNProcess;
 import org.wso2.carbon.bpmn.stub.BPMNDeploymentServiceBPSFaultException;
 import org.wso2.carbon.bpmn.stub.BPMNDeploymentServiceStub;
+import org.wso2.carbon.bpmn.stub.BPMNInstanceServiceBPSFaultException;
+import org.wso2.carbon.bpmn.stub.BPMNInstanceServiceStub;
 import org.wso2.carbon.pc.core.ProcessCenterConstants;
 
 import java.rmi.RemoteException;
@@ -37,6 +40,7 @@ public class WorkflowServiceClient {
 
     private static Log log = LogFactory.getLog(WorkflowServiceClient.class);
     BPMNDeploymentServiceStub deploymentServiceStub = null;
+    BPMNInstanceServiceStub instanceServiceStub=null;
 
     public WorkflowServiceClient(String cookie,
                                  String backendServerURL,
@@ -45,11 +49,25 @@ public class WorkflowServiceClient {
         String deploymentServiceURL = backendServerURL + "/" + ProcessCenterConstants.SERVICES + "/" +
                 ProcessCenterConstants
                 .BPMN_DEPLOYMENT_SERVICE;
+
+
+        String instanceServiceURL =backendServerURL+"/" +ProcessCenterConstants.SERVICES + "/" +
+                ProcessCenterConstants
+                        .BPMN_INSTANCE_SERVICE;
+
+
+
         deploymentServiceStub = new BPMNDeploymentServiceStub(configContext, deploymentServiceURL);
         ServiceClient deploymentServiceClient = deploymentServiceStub._getServiceClient();
         Options option2 = deploymentServiceClient.getOptions();
         option2.setManageSession(true);
         option2.setProperty(org.apache.axis2.transport.http.HTTPConstants.COOKIE_STRING, cookie);
+
+        instanceServiceStub = new BPMNInstanceServiceStub(configContext, instanceServiceURL);
+        ServiceClient instanceServiceClient = instanceServiceStub._getServiceClient();
+        Options option3 = instanceServiceClient.getOptions();
+        option3.setManageSession(true);
+        option3.setProperty(org.apache.axis2.transport.http.HTTPConstants.COOKIE_STRING, cookie);
 
     }
 
@@ -100,6 +118,15 @@ public class WorkflowServiceClient {
      */
     public String getLatestChecksum(String deploymentName) throws RemoteException {
         return deploymentServiceStub.getLatestChecksum(deploymentName);
+
+    }
+    /**
+     * Get latest checksum for given deployment name
+     *
+     * @throws RemoteException
+     */
+    public BPMNInstance[] getInstanceList() throws RemoteException, BPMNInstanceServiceBPSFaultException {
+        return instanceServiceStub.getProcessInstances();
 
     }
 }
