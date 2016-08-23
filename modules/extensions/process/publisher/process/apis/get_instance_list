@@ -15,14 +15,14 @@ var log = new Log();
 if (log.isDebugEnabled()) {
     log.debug("INSIDE get instance list...");
 }
-var ins = new Instance("admin","admin","https://localhost:9448");
+var ins = new InstanceServices("admin","admin","https://localhost:9448");
 
 
 var responseObj = {};
 try {
 
     var Data = ins.getInstanceList();
-    var Data = ins.getInstanceList();
+    
     if (log.isDebugEnabled()) {
         log.debug(bpmnData);
     }

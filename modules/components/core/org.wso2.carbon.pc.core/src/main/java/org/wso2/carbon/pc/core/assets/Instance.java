@@ -2,7 +2,9 @@ package org.wso2.carbon.pc.core.assets;
 
 import org.apache.axis2.AxisFault;
 import org.wso2.carbon.authenticator.stub.LoginAuthenticationExceptionException;
+import org.wso2.carbon.bpmn.core.mgt.model.xsd.BPMNInstance;
 import org.wso2.carbon.bpmn.stub.BPMNDeploymentServiceBPSFaultException;
+import org.wso2.carbon.bpmn.stub.BPMNInstanceServiceBPSFaultException;
 import org.wso2.carbon.pc.core.ProcessCenterException;
 import org.wso2.carbon.pc.core.clients.LoginAdminServiceClient;
 import org.wso2.carbon.pc.core.clients.WorkflowServiceClient;
@@ -35,18 +37,23 @@ public class Instance {
 
 
 
-    public void getInstanceList(String packageName) throws ProcessCenterException {
+    public BPMNInstance[] getInstanceList() throws ProcessCenterException {
         try {
             WorkflowServiceClient workflowServiceClient = new WorkflowServiceClient(loginServiceClient.authenticate
                     (this.username, this.password.toCharArray()), this.url, null);
-            workflowServiceClient.undeploy(packageName);
+
+            return workflowServiceClient.getInstanceList();
 
         } catch (LoginAuthenticationExceptionException e) {
             throw new ProcessCenterException("Authentication error while undeploying bpmn package to BPS server ", e);
         } catch (MalformedURLException e) {
             throw new ProcessCenterException("Error occurred while passing server Url ", e);
-        } catch (BPMNDeploymentServiceBPSFaultException | RemoteException e) {
+        } catch (RemoteException e) {
             throw new ProcessCenterException("Error occurred undeploying bpmn package to BPS server ", e);
+        } catch (BPMNInstanceServiceBPSFaultException e) {
+            e.printStackTrace();
+
         }
+        return null;
     }
 }
