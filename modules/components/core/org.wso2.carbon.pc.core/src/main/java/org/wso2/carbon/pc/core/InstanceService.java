@@ -16,6 +16,7 @@ import java.io.File;
  */
 
 public class InstanceService {
+    
     Instance ins;
     private ProcessCenterConfiguration processCenterConfiguration;
     private ProcessServer processServer;

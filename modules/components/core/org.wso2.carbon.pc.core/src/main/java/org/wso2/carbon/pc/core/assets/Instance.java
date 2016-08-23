@@ -65,7 +65,10 @@ public class Instance {
 
 
             instances = workflowServiceClient.getInstanceList();
-            System.out.println(instances);
+            System.out.println(instances[0].getProcessName());
+            System.out.println(instances[0].getInstanceId());
+            System.out.println(instances[0].getProcessId());
+            System.out.println(instances[0].getVariables()[0].getName());
             return instances;
 
         } catch (LoginAuthenticationExceptionException e) {
