@@ -70,6 +70,7 @@ public class InstanceService {
                 jobj.put("InstanceID", list[k].getInstanceId());
                 jobj.put("ProcessName", list[k].getProcessName());
                 jobj.put("ProcessID", list[k].getProcessId());
+                jobj.put("StartTime",list[k].getStartTime());
                 JSONArray variableArray = new JSONArray();
                 BPMNVariable[] vars = list[k].getVariables();
                 if (vars != null) {
