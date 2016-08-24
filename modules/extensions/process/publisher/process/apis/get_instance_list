@@ -22,7 +22,8 @@ var responseObj = {};
 try {
     log.info("Inside try");
 
-    var Data = ins.getInstanceList();
+    var Data = ins.getInstanceDetails();
+
 
     if (log.isDebugEnabled()) {
         log.debug(bpmnData);

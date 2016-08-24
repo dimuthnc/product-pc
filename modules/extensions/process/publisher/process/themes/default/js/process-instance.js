@@ -7,6 +7,7 @@ function getInstnace() {
         type: 'GET',
         async: false,
         success: function (data) {
+            window.alert(data);
             var response = JSON.parse(data);
             if (response.error === false) {
                 processTagsObj = JSON.parse(response.content);
@@ -14,7 +15,6 @@ function getInstnace() {
                 if ($("#pName").val() != "" && $("#pVersion").val() != "") {
                     var path = "/processes/"+$("#pName").val()+"/" +$("#pVersion").val()
                     for (var key in processTagsObj) {
-                        window.alert("Inside preocess-instance.js")
                         if (processTagsObj.hasOwnProperty(key)) {
                             var processObj = processTagsObj[key];
                             if(processObj[0].path=== path){

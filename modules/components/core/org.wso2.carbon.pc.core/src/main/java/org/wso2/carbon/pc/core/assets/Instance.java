@@ -5,6 +5,7 @@ import org.apache.axis2.jaxws.util.SoapUtils;
 import org.apache.taglibs.standard.tag.el.sql.SetDataSourceTag;
 import org.wso2.carbon.authenticator.stub.LoginAuthenticationExceptionException;
 import org.wso2.carbon.bpmn.core.mgt.model.xsd.BPMNInstance;
+import org.wso2.carbon.bpmn.core.mgt.model.xsd.BPMNVariable;
 import org.wso2.carbon.bpmn.stub.BPMNDeploymentServiceBPSFaultException;
 import org.wso2.carbon.bpmn.stub.BPMNInstanceServiceBPSFaultException;
 import org.wso2.carbon.pc.core.ProcessCenter;
@@ -64,11 +65,13 @@ public class Instance {
                     (this.username, this.password.toCharArray()), this.url, null);
 
 
+
             instances = workflowServiceClient.getInstanceList();
-            System.out.println(instances[0].getProcessName());
-            System.out.println(instances[0].getInstanceId());
-            System.out.println(instances[0].getProcessId());
-            System.out.println(instances[0].getVariables()[0].getName());
+
+
+
+
+
             return instances;
 
         } catch (LoginAuthenticationExceptionException e) {
