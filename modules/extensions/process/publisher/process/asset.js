@@ -26,200 +26,200 @@ asset.server = function(ctx) {
         onUserLoggedIn: function() {},
         endpoints: {
             apis: [{
-                       url: 'instance',
-                       path: 'get_instance_list.jag'
-                    },
-                   {
-                       url: 'assets',
-                       path: 'assets.jag'
-                   }, {
-                       url: 'asset',
-                       path: 'asset.jag'
-                   }, {
-                       url: 'statistics',
-                       path: 'statistics.jag'
-                   }, {
-                       url: 'create_process',
-                       path: 'create_process.jag'
-                   }, {
-                       url: 'upload_bpmn',
-                       path: 'upload_bpmn.jag'
-                   }, {
-                       url: 'get_process_text',
-                       path: 'get_process_text.jag'
-                   }, {
-                       url: 'get_bpmn_content',
-                       path: 'get_bpmn_content.jag'
-                   }, {
-                       url: 'save_process_text',
-                       path: 'save_process_text.jag'
-                   }, {
-                       url: 'asset',
-                       path: 'asset.jag'
-                   }, {
-                       url: 'statistics',
-                       path: 'statistics.jag'
-                   }, {
-                       url: 'get_process_list',
-                       path: 'get_instance_list.jag'
-                   }, {
-                       url: 'update_subprocess',
-                       path: 'update_subprocess.jag'
-                   }, {
-                       url: 'update_successor',
-                       path: 'update_successor.jag'
-                   }, {
-                       url: 'update_predecessor',
-                       path: 'update_predecessor.jag'
-                   }, {
-                       url: 'delete_subprocess',
-                       path: 'delete_subprocess.jag'
-                   }, {
-                       url: 'delete_successor',
-                       path: 'delete_successor.jag'
-                   }, {
-                       url: 'delete_Predecessor',
-                       path: 'delete_Predecessor.jag'
-                   }, {
-                       url: 'update_process',
-                       path: 'update_process.jag'
-                   }, {
-                       url: 'update_owner',
-                       path: 'update_owner.jag'
-                   }, {
-                       url: 'upload_documents',
-                       path: 'upload_documents.jag'
-                   }, {
-                       url: 'get_process_tags',
-                       path: 'get_process_tags.jag'
-                   }, {
-                       url: 'upload_flowchart',
-                       path: 'upload_flowchart.jag'
-                   }, {
-                       url: 'get_process_flowchart',
-                       path: 'get_process_flowchart.jag'
-                   }, {
-                       url: 'get_process_doc',
-                       path: 'get_process_doc.jag'
-                   }, {
-                       url: 'download_document',
-                       path: 'download_document.jag'
-                   }, {
-                       url: 'delete_flowchart',
-                       path: 'delete_flowchart.jag'
-                   }, {
-                       url: 'delete_document',
-                       path: 'delete_document.jag'
-                   }, {
-                       url: 'delete_bpmn',
-                       path: 'delete_bpmn.jag'
-                   }, {
-                       url: 'update_description',
-                       path: 'update_description.jag'
-                   }, {
-                       url: 'audit_log',
-                       path: 'audit_log.jag'
-                   }, {
-                       url: 'get_role_permission',
-                       path: 'get_role_permission.jag'
-                   }, {
-                       url: 'export_process',
-                       path: 'export_process.jag'
-                   }, {
-                       url: 'import_process',
-                       path: 'import_process.jag'
-                   }, {
-                        url: 'update_document_details',
-                        path: 'update_document_details.jag'
-                   }, {
-                        url: 'config_das_analytics',
-                        path: 'config_das_analytics.jag'
-                   }, {
-                        url: 'save_process_variables',
-                        path: 'save_process_variables.jag'
-                   }, {
-                        url: 'get_process_variables',
-                        path: 'get_process_variables.jag'
-                   }, {
-                        url: 'get_process_variables_list',
-                        path: 'get_process_variables_list.jag'
-                   },{
-                        url: 'get_process_deployed_id',
-                        path: 'get_process_deployed_id.jag'
-                   }
+                url: 'instance',
+                path: 'get_instance_list.jag'
+            },
+                {
+                    url: 'assets',
+                    path: 'assets.jag'
+                }, {
+                    url: 'asset',
+                    path: 'asset.jag'
+                }, {
+                    url: 'statistics',
+                    path: 'statistics.jag'
+                }, {
+                    url: 'create_process',
+                    path: 'create_process.jag'
+                }, {
+                    url: 'upload_bpmn',
+                    path: 'upload_bpmn.jag'
+                }, {
+                    url: 'get_process_text',
+                    path: 'get_process_text.jag'
+                }, {
+                    url: 'get_bpmn_content',
+                    path: 'get_bpmn_content.jag'
+                }, {
+                    url: 'save_process_text',
+                    path: 'save_process_text.jag'
+                }, {
+                    url: 'asset',
+                    path: 'asset.jag'
+                }, {
+                    url: 'statistics',
+                    path: 'statistics.jag'
+                }, {
+                    url: 'get_process_list',
+                    path: 'get_process_list.jag'
+                }, {
+                    url: 'update_subprocess',
+                    path: 'update_subprocess.jag'
+                }, {
+                    url: 'update_successor',
+                    path: 'update_successor.jag'
+                }, {
+                    url: 'update_predecessor',
+                    path: 'update_predecessor.jag'
+                }, {
+                    url: 'delete_subprocess',
+                    path: 'delete_subprocess.jag'
+                }, {
+                    url: 'delete_successor',
+                    path: 'delete_successor.jag'
+                }, {
+                    url: 'delete_Predecessor',
+                    path: 'delete_Predecessor.jag'
+                }, {
+                    url: 'update_process',
+                    path: 'update_process.jag'
+                }, {
+                    url: 'update_owner',
+                    path: 'update_owner.jag'
+                }, {
+                    url: 'upload_documents',
+                    path: 'upload_documents.jag'
+                }, {
+                    url: 'get_process_tags',
+                    path: 'get_process_tags.jag'
+                }, {
+                    url: 'upload_flowchart',
+                    path: 'upload_flowchart.jag'
+                }, {
+                    url: 'get_process_flowchart',
+                    path: 'get_process_flowchart.jag'
+                }, {
+                    url: 'get_process_doc',
+                    path: 'get_process_doc.jag'
+                }, {
+                    url: 'download_document',
+                    path: 'download_document.jag'
+                }, {
+                    url: 'delete_flowchart',
+                    path: 'delete_flowchart.jag'
+                }, {
+                    url: 'delete_document',
+                    path: 'delete_document.jag'
+                }, {
+                    url: 'delete_bpmn',
+                    path: 'delete_bpmn.jag'
+                }, {
+                    url: 'update_description',
+                    path: 'update_description.jag'
+                }, {
+                    url: 'audit_log',
+                    path: 'audit_log.jag'
+                }, {
+                    url: 'get_role_permission',
+                    path: 'get_role_permission.jag'
+                }, {
+                    url: 'export_process',
+                    path: 'export_process.jag'
+                }, {
+                    url: 'import_process',
+                    path: 'import_process.jag'
+                }, {
+                    url: 'update_document_details',
+                    path: 'update_document_details.jag'
+                }, {
+                    url: 'config_das_analytics',
+                    path: 'config_das_analytics.jag'
+                }, {
+                    url: 'save_process_variables',
+                    path: 'save_process_variables.jag'
+                }, {
+                    url: 'get_process_variables',
+                    path: 'get_process_variables.jag'
+                }, {
+                    url: 'get_process_variables_list',
+                    path: 'get_process_variables_list.jag'
+                },{
+                    url: 'get_process_deployed_id',
+                    path: 'get_process_deployed_id.jag'
+                }
             ],
             pages: [
-                        {
-                        title: 'Prediction',
-                        url: 'predict',
-                        path: 'predict.jag'
-                    },
-                       {
-                        title: 'Asset: ' + typeSingularLabel,
-                        url: 'asset',
-                        path: 'asset.jag'
-                    }, {
-                        title: 'Assets ' + typeSingularLabel,
-                        url: 'assets',
-                        path: 'assets.jag'
-                    }, {
-                        title: 'Create ' + typeSingularLabel,
-                        url: 'create',
-                        path: 'create.jag',
-                        permission: 'ASSET_CREATE'
-                    }, {
-                        title: 'Update ' + typeSingularLabel,
-                        url: 'update',
-                        path: 'update.jag',
-                        permission: 'ASSET_UPDATE'
-                    }, {
-                        title: 'Details ' + typeSingularLabel,
-                        url: 'details',
-                        path: 'details.jag'
-                    }, {
-                        title: 'List ' + pluralLabel,
-                        url: 'list',
-                        path: 'list.jag',
-                        permission: 'ASSET_LIST'
-                    }, {
-                        title: 'Lifecycle',
-                        url: 'lifecycle',
-                        path: 'lifecycle.jag',
-                        permission: 'ASSET_LIFECYCLE'
-                    }, {
-                        title: 'Old lifecycle ',
-                        url: 'old-lifecycle',
-                        path: 'old-lifecycle.jag'
-                    }, {
-                        title: 'Statistics',
-                        url: 'statistics',
-                        path: 'statistics.jag'
-                    }, {
-                        title: 'Copy ' + typeSingularLabel,
-                        url: 'copy',
-                        path: 'copy.jag',
-                        permission: 'ASSET_CREATE'
-                    }, {
-                        title: 'Delete ' + typeSingularLabel,
-                        url: 'delete',
-                        path: 'delete.jag'
-                    },{
-                        title: 'Log: ',
-                        url: 'log',
-                        path: 'log.jag'
-                    },{
-                        title: 'Import Process: ',
-                        url: 'import_process',
-                        path: 'import_process.jag'
-                    },{
-                        title: 'Prediction',
-                        url: 'predict',
-                        path: 'predict.jag'
-                    },{
-                        title: 'Configure Analytics: ',
-                        url: 'config_analytics',
-                        path: 'config_analytics.jag'
-                    }]
+                {
+                    title: 'Prediction',
+                    url: 'predict',
+                    path: 'predict.jag'
+                },
+                {
+                    title: 'Asset: ' + typeSingularLabel,
+                    url: 'asset',
+                    path: 'asset.jag'
+                }, {
+                    title: 'Assets ' + typeSingularLabel,
+                    url: 'assets',
+                    path: 'assets.jag'
+                }, {
+                    title: 'Create ' + typeSingularLabel,
+                    url: 'create',
+                    path: 'create.jag',
+                    permission: 'ASSET_CREATE'
+                }, {
+                    title: 'Update ' + typeSingularLabel,
+                    url: 'update',
+                    path: 'update.jag',
+                    permission: 'ASSET_UPDATE'
+                }, {
+                    title: 'Details ' + typeSingularLabel,
+                    url: 'details',
+                    path: 'details.jag'
+                }, {
+                    title: 'List ' + pluralLabel,
+                    url: 'list',
+                    path: 'list.jag',
+                    permission: 'ASSET_LIST'
+                }, {
+                    title: 'Lifecycle',
+                    url: 'lifecycle',
+                    path: 'lifecycle.jag',
+                    permission: 'ASSET_LIFECYCLE'
+                }, {
+                    title: 'Old lifecycle ',
+                    url: 'old-lifecycle',
+                    path: 'old-lifecycle.jag'
+                }, {
+                    title: 'Statistics',
+                    url: 'statistics',
+                    path: 'statistics.jag'
+                }, {
+                    title: 'Copy ' + typeSingularLabel,
+                    url: 'copy',
+                    path: 'copy.jag',
+                    permission: 'ASSET_CREATE'
+                }, {
+                    title: 'Delete ' + typeSingularLabel,
+                    url: 'delete',
+                    path: 'delete.jag'
+                },{
+                    title: 'Log: ',
+                    url: 'log',
+                    path: 'log.jag'
+                },{
+                    title: 'Import Process: ',
+                    url: 'import_process',
+                    path: 'import_process.jag'
+                },{
+                    title: 'Prediction',
+                    url: 'predict',
+                    path: 'predict.jag'
+                },{
+                    title: 'Configure Analytics: ',
+                    url: 'config_analytics',
+                    path: 'config_analytics.jag'
+                }]
         }
     };
 };
@@ -283,8 +283,8 @@ asset.renderer = function(ctx) {
         var deploymentID = process.getProcessDeployedID();
 
         if(deploymentID != null) {
-                 page.processDeploymentID = deploymentID;
-       		 navList.push('Config Analytics', 'btn-configAnalytics', util.buildUrl('config_analytics') + '/' + id);
+            page.processDeploymentID = deploymentID;
+            navList.push('Config Analytics', 'btn-configAnalytics', util.buildUrl('config_analytics') + '/' + id);
         }
         navList.push('Audit Log', 'btn-auditlog', util.buildUrl('log') + '/' + id);
         navList.push('Predictions', 'btn-edit',util.buildUrl('predict'));
@@ -316,8 +316,8 @@ asset.renderer = function(ctx) {
                 var deploymentID = process.getProcessDeployedID();
 
                 if(deploymentID != null) {
-                   page.processDeploymentID = deploymentID;
-             	   navList.push('Config Analytics', 'btn-configAnalytics', util.buildUrl('config_analytics') + '/' + page.assets.id);
+                    page.processDeploymentID = deploymentID;
+                    navList.push('Config Analytics', 'btn-configAnalytics', util.buildUrl('config_analytics') + '/' + page.assets.id);
                 }
                 navList.push('Audit Log', 'btn-auditlog', util.buildUrl('log') + '/' +page.assets.id);
 

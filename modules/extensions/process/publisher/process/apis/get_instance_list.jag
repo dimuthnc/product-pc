@@ -15,14 +15,14 @@ var log = new Log();
 if (log.isDebugEnabled()) {
     log.debug("INSIDE get instance list...");
 }
-var ins = new InstanceServices();
+var ins = new InstanceService();
 
 
 var responseObj = {};
 try {
     log.info("Inside try");
 
-    var Data = ins.getInstanceDetails();
+    var Data = ins.getInstanceList();
 
 
     if (log.isDebugEnabled()) {
