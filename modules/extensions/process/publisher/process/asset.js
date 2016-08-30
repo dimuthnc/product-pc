@@ -262,7 +262,10 @@ asset.renderer = function(ctx) {
         var isLCViewEnabled = ctx.rxtManager.isLifecycleViewEnabled(ctx.assetType);
         var user = require('store').server.current(session);
         var username = user? user.username : null;
-        //navList.push('Overview', 'btn-overview', util.buildUrl('details') + '/' + id);
+
+
+
+        navList.push('Overview', 'btn-overview', util.buildUrl('details') + '/' + id);
         if (permissionAPI.hasActionPermissionforPath(path, 'write', ctx.session) && permissionAPI.hasAssetPagePermission(type,'update',user.tenantId,username)) {
             navList.push('Edit', 'btn-edit', util.buildUrl('update') + '/' + id);
         }
@@ -285,19 +288,65 @@ asset.renderer = function(ctx) {
         if(deploymentID != null) {
             page.processDeploymentID = deploymentID;
             navList.push('Config Analytics', 'btn-configAnalytics', util.buildUrl('config_analytics') + '/' + id);
+            log.info(id);
+            navList.push('Predictions', 'btn-edit',util.buildUrl('predict') + '/' + id);
         }
         navList.push('Audit Log', 'btn-auditlog', util.buildUrl('log') + '/' + id);
-        navList.push('Predictions', 'btn-edit',util.buildUrl('predict'));
+
         //if (permissionAPI.hasActionPermissionforPath(path, 'write', ctx.session) && permissionAPI.hasAssetPagePermission(type,'update',user.tenantId,username)) {
         //navList.push('Version', 'btn-copy', util.buildUrl('copy') + '/' + id);
         //}
 
         return navList.list();
     };
+    var buildPredictionLeftNav = function(page, util) {
+        var id = page.assets.id;
+        var path = page.assets.path;
+        var navList = util.navList();
+        var isLCViewEnabled = ctx.rxtManager.isLifecycleViewEnabled(ctx.assetType);
+        var user = require('store').server.current(session);
+        var username = user? user.username : null;
+
+
+
+        navList.push('Overview', 'btn-overview', util.buildUrl('details') + '/' + id);
+        if (permissionAPI.hasActionPermissionforPath(path, 'write', ctx.session) && permissionAPI.hasAssetPagePermission(type,'update',user.tenantId,username)) {
+            navList.push('Edit', 'btn-edit', util.buildUrl('update') + '/' + id);
+        }
+
+        //Only render the view if the asset has a
+        if ((isLCViewEnabled) && (isAssetWithLifecycle(page.assets))) {
+            if (permissionAPI.hasAssetPermission(permissionAPI.ASSET_LIFECYCLE, ctx.assetType, ctx.session)) {
+                navList.push('Lifecycle', 'btn-lifecycle', util.buildUrl('lifecycle') + '/' + id);
+            }
+        }
+
+        if (permissionAPI.hasActionPermissionforPath(path, 'delete', ctx.session)) {
+            navList.push('Delete', 'btn-delete', util.buildUrl('delete') + '/' + id);
+        }
+
+        importPackage(org.wso2.carbon.pc.core.assets);
+        var process = new Process(page.processName, page.processVersion, user.username);
+        var deploymentID = process.getProcessDeployedID();
+        page.processDeploymentID = deploymentID;
+        log.info(deploymentID);
+        if(deploymentID != null) {
+            page.processDeploymentID = deploymentID;
+            navList.push('Config Analytics', 'btn-configAnalytics', util.buildUrl('config_analytics') + '/' + id);
+            log.info(id);
+            navList.push('Predictions', 'btn-edit',util.buildUrl('predict') + '/' + id);
+        }
+        navList.push('Audit Log', 'btn-auditlog', util.buildUrl('log') + '/' + id);
+
+        return navList;
+
+    };
+
     var buildLogNav = function (page, util) {
         var navList = util.navList();
         var isLCViewEnabled = ctx.rxtManager.isLifecycleViewEnabled(ctx.assetType);
         var path = page.assets.path;
+
         if (permissionAPI.hasAssetPermission(permissionAPI.ASSET_CREATE, ctx.assetType, ctx.session)) {
             //    log.info(page.assets);
             if(page.assets.id != null) {
@@ -312,12 +361,14 @@ asset.renderer = function(ctx) {
                 }
 
                 importPackage(org.wso2.carbon.pc.core.assets);
+
                 var process = new Process(page.processName, page.processVersion, user.username);
                 var deploymentID = process.getProcessDeployedID();
 
                 if(deploymentID != null) {
                     page.processDeploymentID = deploymentID;
                     navList.push('Config Analytics', 'btn-configAnalytics', util.buildUrl('config_analytics') + '/' + page.assets.id);
+                    navList.push('Predictions', 'btn-edit',util.buildUrl('predict'));
                 }
                 navList.push('Audit Log', 'btn-auditlog', util.buildUrl('log') + '/' +page.assets.id);
 
@@ -615,6 +666,9 @@ asset.renderer = function(ctx) {
                     case 'import_process':
                         page.leftNav = importProcessLeftNav(page,this);
                         break;
+                    case 'predict':
+                        page.leftNav = buildPredictionLeftNav(page,this);
+                        break;
                     default:
                         page.leftNav = buildDefaultLeftNav(page, this);
                         break;
@@ -700,6 +754,7 @@ asset.manager = function(ctx) {
             var processObj= this.get(processUUID);
             var processName = this.getName(processObj);
             var processVersion = this.getVersion(processObj);
+            log.info(processName);
 
             var server = require('store').server;
             var user = server.current(session);

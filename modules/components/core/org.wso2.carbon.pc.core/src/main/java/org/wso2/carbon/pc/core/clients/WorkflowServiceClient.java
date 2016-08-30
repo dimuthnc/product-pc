@@ -126,6 +126,7 @@ public class WorkflowServiceClient {
      * @throws RemoteException
      */
     public BPMNInstance[] getInstanceList() throws RemoteException, BPMNInstanceServiceBPSFaultException {
+
         return instanceServiceStub.getProcessInstances();
 
     }

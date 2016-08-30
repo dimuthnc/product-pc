@@ -43,8 +43,6 @@ public class Instance {
         this.url = url;
         this.username = usr;
         this.password = psw;
-        System.out.println("Creating instance object");
-        System.out.println(url);
         try {
 
             loginServiceClient = new LoginAdminServiceClient(this.url);
@@ -60,7 +58,7 @@ public class Instance {
     public BPMNInstance[] getInstanceList() throws ProcessCenterException {
 
         try {
-            System.out.println("Inside the method try");
+
             WorkflowServiceClient workflowServiceClient = new WorkflowServiceClient(loginServiceClient.authenticate
                     (this.username, this.password.toCharArray()), this.url, null);
 

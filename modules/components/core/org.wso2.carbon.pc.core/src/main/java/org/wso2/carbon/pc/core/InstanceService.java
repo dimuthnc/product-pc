@@ -70,7 +70,11 @@ public class InstanceService {
                 jobj.put("InstanceID", list[k].getInstanceId());
                 jobj.put("ProcessName", list[k].getProcessName());
                 jobj.put("ProcessID", list[k].getProcessId());
-                jobj.put("StartTime",list[k].getStartTime());
+
+                String date = list[k].getStartTime().toString();
+                String[] dateComponents = date.split(" ");
+                jobj.put("CreatedDate", dateComponents[0]+"  "+dateComponents[1]+"  "+dateComponents[2]+"  "+dateComponents[5]);
+
                 JSONArray variableArray = new JSONArray();
                 BPMNVariable[] vars = list[k].getVariables();
                 if (vars != null) {
@@ -89,7 +93,7 @@ public class InstanceService {
 
                 result.put(jobj);
             }
-            System.out.println(result);
+
             instanceDetails = result.toString();
 
 
