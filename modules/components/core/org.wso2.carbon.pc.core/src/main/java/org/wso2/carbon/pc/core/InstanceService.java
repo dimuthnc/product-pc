@@ -2,6 +2,7 @@ package org.wso2.carbon.pc.core;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.openjpa.persistence.jest.JSON;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,9 +64,10 @@ public class InstanceService {
 
 
 
+
+
             for (int k = 0; k < list.length; k++) {
                 JSONObject jobj = new JSONObject();
-
 
                 jobj.put("InstanceID", list[k].getInstanceId());
                 jobj.put("ProcessName", list[k].getProcessName());
@@ -77,16 +79,23 @@ public class InstanceService {
 
                 JSONArray variableArray = new JSONArray();
                 BPMNVariable[] vars = list[k].getVariables();
-                if (vars != null) {
+                JSONObject jvarobj = new JSONObject();
+
 
                     for (int i = 0; i < vars.length; i++) {
-                        JSONObject jvarobj = new JSONObject();
+                        System.out.println(vars[i].getName()+"    "+ vars[i].getValue());
+
                         jvarobj.put(vars[i].getName(), vars[i].getValue());
-                        variableArray.put(jvarobj);
+
+
+
 
                     }
+                    variableArray.put(jvarobj);
 
-                }
+
+                System.out.println(variableArray);
+                System.out.println(instanceDetails);
 
                 jobj.put("Variables", variableArray);
 

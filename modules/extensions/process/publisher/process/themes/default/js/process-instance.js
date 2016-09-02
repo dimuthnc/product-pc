@@ -2,7 +2,6 @@
  * Created by dimuth on 8/23/16.
  */
 function getInstance() {
-
     $.ajax({
         url: '/designer/assets/process/apis/instance',
         type: 'GET',
@@ -43,7 +42,22 @@ function getInstance() {
                         cell1.innerHTML = processTagsObj[i].InstanceID;
                         cell2.innerHTML = processTagsObj[i].ProcessID;
                         cell3.innerHTML = processTagsObj[i].CreatedDate;
-                        cell4.innerHTML = '<Button>View Process Variables</Button>';
+                        var variables = processTagsObj[i].Variables;
+                        var jstr = JSON.stringify(variables);
+
+                        var strlink ="/designer/assets/process/instance_variable"+"?vars="+btoa(jstr);
+
+
+
+
+                        cell4.innerHTML = '<a href='+strlink+'>View Process Variables</a>';
+
+
+
+
+
+
+
 
                     }
 
@@ -64,4 +78,54 @@ function getInstance() {
         }
     });
 
+}
+
+
+
+function getInstanceVariables(){
+
+
+    var query = window.location.search.substring(1);
+    var pair = query.split("=");
+    var jarray = atob(pair[1]);
+    var jarry = JSON.parse(jarray);
+    var table= document.getElementById('varTable');
+
+    var vars = jarry[0];
+
+
+    k=table.rows.length;
+    for(j=1;j<k;j++){
+        table.deleteRow(1);
+
+    }
+
+    for (var key in vars) {
+
+        window.alert(key);
+
+        var row = table.insertRow(1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+
+        cell1.innerHTML = key;
+        cell2.innerHTML = vars[key];
+
+
+
+
+
+
+        window.alert(vars[key]);
+
+
+
+
+
+        //var jarray = JSON.parse(jarray);
+
+        //window.alert(atob(pair[1]));
+
+
+    }
 }

@@ -150,6 +150,12 @@ asset.server = function(ctx) {
             ],
             pages: [
                 {
+                    title: 'Instance Variables',
+                    url: 'instance_variable',
+                    path: 'instance_variable.jag'
+                },
+
+                {
                     title: 'Prediction',
                     url: 'predict',
                     path: 'predict.jag'
@@ -297,6 +303,7 @@ asset.renderer = function(ctx) {
         //navList.push('Version', 'btn-copy', util.buildUrl('copy') + '/' + id);
         //}
 
+
         return navList.list();
     };
     var buildPredictionLeftNav = function(page, util) {
@@ -310,6 +317,7 @@ asset.renderer = function(ctx) {
 
 
         navList.push('Overview', 'btn-overview', util.buildUrl('details') + '/' + id);
+
         if (permissionAPI.hasActionPermissionforPath(path, 'write', ctx.session) && permissionAPI.hasAssetPagePermission(type,'update',user.tenantId,username)) {
             navList.push('Edit', 'btn-edit', util.buildUrl('update') + '/' + id);
         }
@@ -329,15 +337,15 @@ asset.renderer = function(ctx) {
         var process = new Process(page.processName, page.processVersion, user.username);
         var deploymentID = process.getProcessDeployedID();
         page.processDeploymentID = deploymentID;
-        log.info(deploymentID);
+
         if(deploymentID != null) {
             page.processDeploymentID = deploymentID;
             navList.push('Config Analytics', 'btn-configAnalytics', util.buildUrl('config_analytics') + '/' + id);
-            log.info(id);
+
             navList.push('Predictions', 'btn-edit',util.buildUrl('predict') + '/' + id);
         }
         navList.push('Audit Log', 'btn-auditlog', util.buildUrl('log') + '/' + id);
-
+        log.info(navList);
         return navList;
 
     };
@@ -429,7 +437,20 @@ asset.renderer = function(ctx) {
                 }
             }
             var log = new Log();
+
+
+
+
             var resourcePath = page.assets.path;
+
+
+
+
+            //  log.info(page);
+
+
+
+
             if (log.isDebugEnabled()) {
                 log.debug(resourcePath);
             }
@@ -507,7 +528,7 @@ asset.renderer = function(ctx) {
             page.DASAnalyticsEnabled = AnalyticsUtils.isDASAnalyticsActivated();
             importPackage(org.wso2.carbon.pc.analytics.core.kpi.utils);
             page.DASAnalyticsConfigured = DASConfigurationUtils.isDASAnalyticsConfigured(processName, processVersion);
-
+            log.info(page.DASAnalyticsConfigured);
             if (page.DASAnalyticsConfigured) {
                 var processVariablesJObArrStr = ps.getProcessVariablesList(resourcePath);
                 var processVariablesJObArr = JSON.parse(processVariablesJObArrStr);
@@ -521,6 +542,7 @@ asset.renderer = function(ctx) {
                 page.eventReceiverName = streamAndReceiverInfo["eventReceiverName"];
                 page.processDefinitionId = streamAndReceiverInfo["processDefinitionId"];
             }
+
 
         },
         create: function(page) {
@@ -570,6 +592,7 @@ asset.renderer = function(ctx) {
             var bpmnPathAttribute = 'bpmnpath';
             var documentPathNameAttribute = 'name';
             var flowchartPathAttribute = 'path';
+
             for (var index in tables) {
                 var table = tables[index];
                 if ((table.name == 'overview') && (table.fields.hasOwnProperty(timestampAttribute))) {
@@ -650,6 +673,7 @@ asset.renderer = function(ctx) {
                 if (log.isDebugEnabled()) {
                     log.debug('Using default leftNav');
                 }
+
                 switch (page.meta.pageName) {
                     case 'list':
                         page.leftNav = buildListLeftNav(page, this);
@@ -667,6 +691,9 @@ asset.renderer = function(ctx) {
                         page.leftNav = importProcessLeftNav(page,this);
                         break;
                     case 'predict':
+                        page.leftNav = buildPredictionLeftNav(page,this);
+                        break;
+                    case 'instance_variable':
                         page.leftNav = buildPredictionLeftNav(page,this);
                         break;
                     default:
@@ -754,7 +781,7 @@ asset.manager = function(ctx) {
             var processObj= this.get(processUUID);
             var processName = this.getName(processObj);
             var processVersion = this.getVersion(processObj);
-            log.info(processName);
+
 
             var server = require('store').server;
             var user = server.current(session);
