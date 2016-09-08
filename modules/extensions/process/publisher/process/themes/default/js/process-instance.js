@@ -9,13 +9,20 @@ function getInstance() {
         success: function (data) {
             var table= document.getElementById('dataTable');
             var deploymentID = document.getElementById("DeploymentID").value;
-
+            var AllVarList=[];
 
 
             k=table.rows.length;
             for(j=1;j<k;j++){
                 table.deleteRow(1);
 
+            }
+            var table2= document.getElementById('allVars');
+
+            for(j=0 ;  j<table2.rows.length ;  j++){
+              var rowValue = table2.rows[j].cells[0].innerHTML;
+              AllVarList.push(rowValue);
+              //window.alert(rowValue);
             }
 
 
@@ -26,11 +33,14 @@ function getInstance() {
             if (response.error === false) {
 
 
+                var varList = document.getElementById("varList").value;
 
                 processTagsObj = JSON.parse(response.content);
 
 
 
+
+                //log.info(page.processVariableList);
 
                 for (i = 0; i < processTagsObj.length; i++) {
                     if(deploymentID==processTagsObj[i].ProcessID){
@@ -43,8 +53,21 @@ function getInstance() {
                         cell2.innerHTML = processTagsObj[i].ProcessID;
                         cell3.innerHTML = processTagsObj[i].CreatedDate;
                         var variables = processTagsObj[i].Variables;
-                        var jstr = JSON.stringify(variables);
 
+
+
+                        var avaList=Object.keys(variables[0]);
+                        var finalList ={};
+                        for(var n in AllVarList){
+                          if(avaList.indexOf(AllVarList[n])==-1){
+
+                            variables[0][AllVarList[n]] = null;
+
+
+                          }
+                      //  window.alert(page);
+
+                        var jstr = JSON.stringify(variables);
                         var strlink ="/designer/assets/process/instance_variable"+"?vars="+btoa(jstr);
 
 
@@ -62,6 +85,15 @@ function getInstance() {
                     }
 
                 }
+
+
+
+
+
+                }
+
+
+
 
 
 
@@ -102,30 +134,23 @@ function getInstanceVariables(){
 
     for (var key in vars) {
 
-        window.alert(key);
 
         var row = table.insertRow(1);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
 
         cell1.innerHTML = key;
-        cell2.innerHTML = vars[key];
+        if (vars[key] == null) {
+            cell2.innerHTML = "<a>Predict</a>";
 
-
-
-
-
-
-        window.alert(vars[key]);
-
-
-
+        }
+        else {
+            cell2.innerHTML = vars[key];
+        }
 
 
         //var jarray = JSON.parse(jarray);
 
         //window.alert(atob(pair[1]));
-
-
     }
 }
