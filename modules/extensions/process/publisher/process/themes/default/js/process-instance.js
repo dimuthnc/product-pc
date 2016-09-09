@@ -20,9 +20,9 @@ function getInstance() {
             var table2= document.getElementById('allVars');
 
             for(j=0 ;  j<table2.rows.length ;  j++){
-              var rowValue = table2.rows[j].cells[0].innerHTML;
-              AllVarList.push(rowValue);
-              //window.alert(rowValue);
+                var rowValue = table2.rows[j].cells[0].innerHTML;
+                AllVarList.push(rowValue);
+                //window.alert(rowValue);
             }
 
 
@@ -59,32 +59,32 @@ function getInstance() {
                         var avaList=Object.keys(variables[0]);
                         var finalList ={};
                         for(var n in AllVarList){
-                          if(avaList.indexOf(AllVarList[n])==-1){
+                            if(avaList.indexOf(AllVarList[n])==-1){
 
-                            variables[0][AllVarList[n]] = null;
-
-
-                          }
-                      //  window.alert(page);
-
-                        var jstr = JSON.stringify(variables);
-                        var strlink ="/designer/assets/process/instance_variable"+"?vars="+btoa(jstr);
+                                variables[0][AllVarList[n]] = null;
 
 
+                            }
+                            //  window.alert(page);
+
+                            var jstr = JSON.stringify(variables);
+                            var strlink ="/designer/assets/process/instance_variable"+"?vars="+btoa(jstr);
 
 
-                        cell4.innerHTML = '<a href='+strlink+'>View Process Variables</a>';
 
 
+                            cell4.innerHTML = '<a href='+strlink+'>View Process Variables</a>';
 
 
 
 
 
+
+
+
+                        }
 
                     }
-
-                }
 
 
 
@@ -141,7 +141,7 @@ function getInstanceVariables(){
 
         cell1.innerHTML = key;
         if (vars[key] == null) {
-            cell2.innerHTML = "<a>Predict</a>";
+            cell2.innerHTML = "<a onclick='predictValue()'>Predict</a>";
 
         }
         else {
@@ -153,4 +153,31 @@ function getInstanceVariables(){
 
         //window.alert(atob(pair[1]));
     }
+}
+
+function predictValue(){
+
+    $.ajax({
+        url: '/designer/assets/process/apis/predict_variable',
+        type: 'POST',
+        //data: {'processVariablesInfo': JSON.stringify(processVariablesInfo)},
+        async: false,
+        success: function (response) {
+
+
+            if (response == "FAIL") {
+                alertify.error(' variables predicting error');
+                returnValue = "ERROR";
+                callback(returnValue);
+            } else {
+                returnValue = "SUCCESS";
+                callback(returnValue);
+            }
+        },
+        error: function (response) {
+            alertify.error('api calling error');
+            returnValue = "ERROR";
+            callback1(returnValue);
+        }
+    });
 }

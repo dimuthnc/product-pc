@@ -146,6 +146,9 @@ asset.server = function(ctx) {
                 },{
                     url: 'get_process_deployed_id',
                     path: 'get_process_deployed_id.jag'
+                },{
+                    url: 'predict_variable',
+                    path: 'predict_variable.jag'
                 }
             ],
             pages: [
@@ -294,7 +297,7 @@ asset.renderer = function(ctx) {
         if(deploymentID != null) {
             page.processDeploymentID = deploymentID;
             navList.push('Config Analytics', 'btn-configAnalytics', util.buildUrl('config_analytics') + '/' + id);
-            log.info(id);
+
             navList.push('Predictions', 'btn-edit',util.buildUrl('predict') + '/' + id);
         }
         navList.push('Audit Log', 'btn-auditlog', util.buildUrl('log') + '/' + id);
@@ -345,7 +348,7 @@ asset.renderer = function(ctx) {
             navList.push('Predictions', 'btn-edit',util.buildUrl('predict') + '/' + id);
         }
         navList.push('Audit Log', 'btn-auditlog', util.buildUrl('log') + '/' + id);
-        log.info(navList);
+
         return navList;
 
     };
@@ -528,7 +531,7 @@ asset.renderer = function(ctx) {
             page.DASAnalyticsEnabled = AnalyticsUtils.isDASAnalyticsActivated();
             importPackage(org.wso2.carbon.pc.analytics.core.kpi.utils);
             page.DASAnalyticsConfigured = DASConfigurationUtils.isDASAnalyticsConfigured(processName, processVersion);
-            log.info(page.DASAnalyticsConfigured);
+
             if (page.DASAnalyticsConfigured) {
                 var processVariablesJObArrStr = ps.getProcessVariablesList(resourcePath);
                 var processVariablesJObArr = JSON.parse(processVariablesJObArrStr);

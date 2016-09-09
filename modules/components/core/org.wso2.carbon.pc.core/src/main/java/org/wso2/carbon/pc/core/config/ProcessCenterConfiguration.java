@@ -40,6 +40,10 @@ public class ProcessCenterConfiguration {
 
     /* Configurations related to process analytics */
     private boolean analyticsEnabled;
+    private String machineLearnerURL;
+
+
+
     private String analyticsServerURL;
     private String analyticsServerUsername;
     private String analyticsServerPassword;
@@ -57,6 +61,12 @@ public class ProcessCenterConfiguration {
      * @param processCenterConfig XMLBeans object of process center configuration file
      */
     public ProcessCenterConfiguration(File processCenterConfig) {
+        //machinelearnerURL hardcoded just to test
+
+        machineLearnerURL = "https://localhost:9458";
+
+
+
         processCenterDocument = readConfigurationFromFile(processCenterConfig);
 
         if (processCenterDocument == null) {
@@ -129,6 +139,7 @@ public class ProcessCenterConfiguration {
             } else {
                 this.analyticsServerURL = tAnalytics.getDASServerUrl();
             }
+
             // Get Username
             this.analyticsServerUsername = tAnalytics.getDASUsername();
             // Get Password
@@ -219,5 +230,10 @@ public class ProcessCenterConfiguration {
 
     public String getRuntimeEnvironmentPassword() {
         return runtimeEnvironmentPassword;
+    }
+
+    public String getMachineLearnerURL() { return machineLearnerURL;}
+
+    public void setMachineLearnerURL(String machineLearnerURL) { machineLearnerURL = machineLearnerURL;
     }
 }

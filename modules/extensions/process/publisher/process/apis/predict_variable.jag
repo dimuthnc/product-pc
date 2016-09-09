@@ -1,0 +1,39 @@
+<%
+
+
+
+
+
+
+
+
+importPackage(org.wso2.carbon.pc.analytics.core.kpi.utils);
+
+var log = new Log();
+
+if (log.isDebugEnabled()) {
+
+}
+
+
+
+var responseObj = {};
+try {
+
+
+    if (log.isDebugEnabled()) {
+        log.debug(bpmnData);
+    }
+    responseObj.error = false;
+
+    if(Data=null){
+        log.info("Return null")
+    }
+    print(stringify(responseObj));
+} catch (error) {
+    log.info("Error   "+error.toString())
+    responseObj.error = true;
+    responseObj.content = "predicted values returning error";
+    print(stringify(responseObj));
+}
+%>

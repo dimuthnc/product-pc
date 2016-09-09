@@ -33,6 +33,8 @@ public class AnalyticsConfigConstants {
     public static final String REQUEST_HEADER_BASIC = "Basic";
     public static final String EVENT_STREAM_ADMIN_SERVICE_NAME = "EventStreamAdminService";
     public static final String BPS_PROCESS_VAR_PUBLISH_REST_PATH = "/bpmn/analytics/publish-process-variables/";
+    public static final String ML_PREDICT_VAR_PATH = "/api/models/34/predict";
+
 
     // Make the constructor private, since it is a utility class
     private AnalyticsConfigConstants() {

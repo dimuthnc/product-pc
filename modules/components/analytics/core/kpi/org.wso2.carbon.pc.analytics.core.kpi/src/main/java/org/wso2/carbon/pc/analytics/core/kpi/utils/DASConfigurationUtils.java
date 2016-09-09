@@ -162,6 +162,10 @@ public class DASConfigurationUtils {
         return getInstance().getProcessCenter().getProcessCenterConfiguration().getRuntimeEnvironmentURL();
     }
 
+    public static String getMLURL(){
+        return getInstance().getProcessCenter().getProcessCenterConfiguration().getMachineLearnerURL();
+    }
+
     /**
      * Get authorization header for access bps admin service
      *
