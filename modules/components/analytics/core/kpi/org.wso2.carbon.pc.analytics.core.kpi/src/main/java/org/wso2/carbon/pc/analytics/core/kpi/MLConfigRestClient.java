@@ -22,7 +22,7 @@ public class MLConfigRestClient {
 
     private static final Log log = LogFactory.getLog(MLConfigRestClient.class);
 
-    public static void predict(String[] variables, String modelNo)
+    public void predict(String params)
             throws IOException, XMLStreamException, RuntimeException {
 
         if (log.isDebugEnabled()) {
@@ -31,39 +31,46 @@ public class MLConfigRestClient {
         String mlUrl = DASConfigurationUtils.getMLURL();
         RegistryUtils.setTrustStoreSystemProperties();
         HttpClient httpClient = new HttpClient();
-        String requestUrl = mlUrl + AnalyticsConfigConstants.ML_PREDICT_VAR_PATH ;
+        String requestUrl = mlUrl+ AnalyticsConfigConstants.ML_PREDICT_VAR_PATH ;
+
+
+
 
         PostMethod postRequest = new PostMethod(requestUrl);
+        System.out.println(requestUrl);
+
+
+        StringRequestEntity input = new StringRequestEntity(params, "application/json", "UTF-8");
+        postRequest.setRequestEntity(input);
+
+
         postRequest.setRequestHeader("Authorization", DASConfigurationUtils.getAuthorizationHeader());
 
-
+        System.out.println("URI   "+postRequest.getURI());
         int returnCode = httpClient.executeMethod(postRequest);
-        System.out.println(returnCode);
+        System.out.println("return Code   "+returnCode);
 
-        /*
+
         InputStreamReader reader = new InputStreamReader((postRequest.getResponseBodyAsStream()), StandardCharsets
                 .UTF_8);
         BufferedReader br = new BufferedReader(reader);
         String output;
-        StringBuilder totalOutput = new StringBuilder();
-
-        while ((output = br.readLine()) != null) {
-            totalOutput.append(output);
-        }
-        String responseMsg = totalOutput.toString();
+        output = br.readLine();
+        String responseMsg = output.toString();
+        System.out.println(responseMsg);
         postRequest.releaseConnection();
         if (br != null) {
             try {
                 br.close();
             } catch (IOException e) {
-                String errMsg = "BPS Config Rest client BufferedReader close exception.";
+                String errMsg = "ML Config Rest client BufferedReader close exception.";
                 log.error(errMsg, e);
             }
         }
         //deal with the response
         if (returnCode == HttpStatus.SC_OK) {
             if (log.isDebugEnabled()) {
-                log.debug("BPS was configured with analytics configuration details.");
+                log.debug("ML was configured with analytics configuration details.");
             }
         } else {
             String errMsg =
@@ -73,6 +80,6 @@ public class MLConfigRestClient {
             log.error(errMsg);
             throw new RuntimeException(responseMsg);
         }
-        */
+
     }
 }

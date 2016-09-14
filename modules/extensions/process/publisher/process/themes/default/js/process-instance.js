@@ -58,6 +58,7 @@ function getInstance() {
 
                         var avaList=Object.keys(variables[0]);
                         var finalList ={};
+
                         for(var n in AllVarList){
                             if(avaList.indexOf(AllVarList[n])==-1){
 
@@ -163,6 +164,7 @@ function predictValue(){
         //data: {'processVariablesInfo': JSON.stringify(processVariablesInfo)},
         async: false,
         success: function (response) {
+            window.alert(response);
 
 
             if (response == "FAIL") {

@@ -8,6 +8,7 @@
 
 
 importPackage(org.wso2.carbon.pc.analytics.core.kpi.utils);
+importPackage(org.wso2.carbon.pc.analytics.core.kpi);
 
 var log = new Log();
 
@@ -17,9 +18,15 @@ if (log.isDebugEnabled()) {
 
 
 
+
 var responseObj = {};
 try {
+    var vars ="[[\"XL\",\"special\"]]";
+    var modelNo = "ex";
+    var mlconfig = new MLConfigRestClient();
+    mlconfig.predict(vars);
 
+    log.info("MLConfigRestClient predict method called");
 
     if (log.isDebugEnabled()) {
         log.debug(bpmnData);
