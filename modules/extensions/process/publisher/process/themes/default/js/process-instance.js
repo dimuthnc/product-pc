@@ -142,7 +142,8 @@ function getInstanceVariables(){
 
         cell1.innerHTML = key;
         if (vars[key] == null) {
-            cell2.innerHTML = "<a onclick='predictValue()'>Predict</a>";
+
+            cell2.innerHTML = "<a onclick=\"predictValue()\">Predict</a>";
 
         }
         else {
@@ -158,10 +159,30 @@ function getInstanceVariables(){
 
 function predictValue(){
 
+    var table2= document.getElementById('varTable')
+    var varNames=[];
+    var varValues=[];
+    k2= table2.rows.length;
+    for(u=1;u<k2;u++){
+        var cellvalue =table2.rows[u].cells[1].innerHTML;
+        var tagstart = cellvalue.substring(0,2);
+        var tagEnd = cellvalue.substring(cellvalue.length-2,cellvalue.length+1)
+
+        if(!(tagstart=="<a" && tagEnd=="a>" )){
+
+
+            varNames.push(table2.rows[u].cells[0].innerHTML);
+            varValues.push(table2.rows[u].cells[1].innerHTML);
+        }
+        window.alert(varNames);
+        window.alert(varValues);
+
+    }
+    window.alert(varValues);
     $.ajax({
         url: '/designer/assets/process/apis/predict_variable',
         type: 'POST',
-        //data: {'processVariablesInfo': JSON.stringify(processVariablesInfo)},
+        data: {'varNames': JSON.stringify(varNames),'varValues':JSON.stringify(varValues)},
         async: false,
         success: function (response) {
             window.alert(response);

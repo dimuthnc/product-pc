@@ -22,7 +22,7 @@ public class MLConfigRestClient {
 
     private static final Log log = LogFactory.getLog(MLConfigRestClient.class);
 
-    public void predict(String params)
+    public String predict(String params)
             throws IOException, XMLStreamException, RuntimeException {
 
         if (log.isDebugEnabled()) {
@@ -62,16 +62,20 @@ public class MLConfigRestClient {
         if (br != null) {
             try {
                 br.close();
+
             } catch (IOException e) {
                 String errMsg = "ML Config Rest client BufferedReader close exception.";
                 log.error(errMsg, e);
+
             }
         }
         //deal with the response
         if (returnCode == HttpStatus.SC_OK) {
             if (log.isDebugEnabled()) {
                 log.debug("ML was configured with analytics configuration details.");
+
             }
+            return responseMsg.substring(1,responseMsg.length()-1);
         } else {
             String errMsg =
                     "Failed : Sending the REST Post call to the WSO2 BPS to communicate the analytics configuration "

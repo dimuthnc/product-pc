@@ -21,12 +21,16 @@ if (log.isDebugEnabled()) {
 
 var responseObj = {};
 try {
-    var vars ="[[\"XL\",\"special\"]]";
-    var modelNo = "ex";
-    var mlconfig = new MLConfigRestClient();
-    mlconfig.predict(vars);
 
-    log.info("MLConfigRestClient predict method called");
+    var varNames = JSON.parse(String(request.getParameter("varNames")));
+    var varValues = JSON.parse(String(request.getParameter("varValues")));
+
+    var vars ="[[\""+varValues[1]+"\",\""+varValues[0]+"\"]]";
+    log.info(vars);
+    var mlconfig = new MLConfigRestClient();
+    responseObj=  mlconfig.predict(vars);
+
+
 
     if (log.isDebugEnabled()) {
         log.debug(bpmnData);
