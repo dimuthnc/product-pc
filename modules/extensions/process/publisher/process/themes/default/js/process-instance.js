@@ -161,6 +161,7 @@ function predictValue(){
 
     var table2= document.getElementById('varTable');
     var modelId= document.getElementById('modelIdField').value;
+    var analysisId= document.getElementById('analysisIdField').value;
     var varNames=[];
     var varValues=[];
     k2= table2.rows.length;
@@ -182,7 +183,7 @@ function predictValue(){
     $.ajax({
         url: '/designer/assets/process/apis/predict_variable',
         type: 'POST',
-        data: {'varNames': JSON.stringify(varNames),'varValues':JSON.stringify(varValues),'modelId':JSON.stringify(modelId)},
+        data: {'varNames': JSON.stringify(varNames),'varValues':JSON.stringify(varValues),'modelId':JSON.stringify(modelId),'analysisId':JSON.stringify(analysisId)},
         async: false,
         success: function (response) {
             var responseJSON = JSON.parse(response);

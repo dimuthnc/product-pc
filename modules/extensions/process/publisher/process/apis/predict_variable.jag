@@ -22,15 +22,13 @@ if (log.isDebugEnabled()) {
 var responseObj = {};
 try {
 
-    var varNames = JSON.parse(String(request.getParameter("varNames")));
-    var varValues = JSON.parse(String(request.getParameter("varValues")));
+
     var modelId = JSON.parse(String(request.getParameter("modelId")));
+    var analysisId = JSON.parse(String(request.getParameter("analysisId")));
 
 
     var mlconfig = new MLConfigRestClient();
-    responseObj.content=  mlconfig.predict(String(request.getParameter("varNames")),String(request.getParameter("varValues")),modelId);
-
-    //log.info(orderList);
+    responseObj.content=  mlconfig.predict(String(request.getParameter("varNames")),String(request.getParameter("varValues")),modelId,analysisId);
 
 
 

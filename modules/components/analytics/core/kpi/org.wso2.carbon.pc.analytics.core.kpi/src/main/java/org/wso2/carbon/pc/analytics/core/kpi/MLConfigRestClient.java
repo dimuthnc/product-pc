@@ -34,7 +34,7 @@ public class MLConfigRestClient {
 
     private static final Log log = LogFactory.getLog(MLConfigRestClient.class);
 
-    public String predict(String varNames, String varValues, String modelId)
+    public String predict(String varNames, String varValues, String modelId,String analysisId)
             throws IOException, XMLStreamException, RuntimeException,JSONException{
 
         if (log.isDebugEnabled()) {
@@ -51,7 +51,7 @@ public class MLConfigRestClient {
         HttpClient httpClient = new HttpClient();
         String requestUrl = mlUrl+ AnalyticsConfigConstants.ML_PREDICT_VAR_PATH +modelId+"/predict";
 
-        String[] varOrder = getVariableOrder();
+        String[] varOrder = getVariableOrder(analysisId);
 
 
         String params = "[[";
@@ -119,14 +119,14 @@ public class MLConfigRestClient {
 
 
     }
-    private String[] getVariableOrder() throws IOException,JSONException{
+    private String[] getVariableOrder(String analysisId) throws IOException,JSONException{
         if (log.isDebugEnabled()) {
             log.debug("Sending POST request to WSO2 ML, to get predicted value for a created model");
         }
         String mlUrl = MLConfigurationUtils.getMLURL();
         RegistryUtils.setTrustStoreSystemProperties();
         HttpClient httpClient = new HttpClient();
-        String requestUrl = mlUrl+ AnalyticsConfigConstants.ML_ANALYTICS_PATH ;
+        String requestUrl = mlUrl+ AnalyticsConfigConstants.ML_ANALYTICS_PATH+ analysisId+"/configs" ;
 
 
 
@@ -172,6 +172,8 @@ public class MLConfigRestClient {
     }
     private int getIndex(String[] arr,String word){
         for(int x=0;x<arr.length;x++){
+            System.out.println(arr[x]);
+            System.out.println(word);
 
             if(arr[x].substring(1,arr[x].length()-1).equals(word)){
                 return x;
