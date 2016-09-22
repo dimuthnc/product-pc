@@ -49,7 +49,6 @@ public class Instance {
         } catch (AxisFault axisFault) {
             throw new ProcessCenterException("Error while creating Login admin service client ", axisFault);
         }
-        System.out.println("object Created");
 
 
     }

@@ -24,11 +24,16 @@ try {
 
     var varNames = JSON.parse(String(request.getParameter("varNames")));
     var varValues = JSON.parse(String(request.getParameter("varValues")));
+    var modelId = JSON.parse(String(request.getParameter("modelId")));
 
-    var vars ="[[\""+varValues[1]+"\",\""+varValues[0]+"\"]]";
-    log.info(vars);
+
     var mlconfig = new MLConfigRestClient();
-    responseObj=  mlconfig.predict(vars);
+    responseObj.content=  mlconfig.predict(String(request.getParameter("varNames")),String(request.getParameter("varValues")),modelId);
+
+    //log.info(orderList);
+
+
+
 
 
 
@@ -36,6 +41,7 @@ try {
         log.debug(bpmnData);
     }
     responseObj.error = false;
+
 
     if(Data=null){
         log.info("Return null")

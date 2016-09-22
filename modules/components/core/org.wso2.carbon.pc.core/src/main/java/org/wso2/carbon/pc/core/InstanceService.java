@@ -83,7 +83,7 @@ public class InstanceService {
 
 
                     for (int i = 0; i < vars.length; i++) {
-                        System.out.println(vars[i].getName()+"    "+ vars[i].getValue());
+
 
                         jvarobj.put(vars[i].getName(), vars[i].getValue());
 
@@ -93,9 +93,6 @@ public class InstanceService {
                     }
                     variableArray.put(jvarobj);
 
-
-                System.out.println(variableArray);
-                System.out.println(instanceDetails);
 
                 jobj.put("Variables", variableArray);
 

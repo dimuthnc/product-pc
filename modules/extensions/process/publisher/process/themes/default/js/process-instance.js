@@ -159,7 +159,8 @@ function getInstanceVariables(){
 
 function predictValue(){
 
-    var table2= document.getElementById('varTable')
+    var table2= document.getElementById('varTable');
+    var modelId= document.getElementById('modelIdField').value;
     var varNames=[];
     var varValues=[];
     k2= table2.rows.length;
@@ -174,25 +175,29 @@ function predictValue(){
             varNames.push(table2.rows[u].cells[0].innerHTML);
             varValues.push(table2.rows[u].cells[1].innerHTML);
         }
-        window.alert(varNames);
-        window.alert(varValues);
+
 
     }
-    window.alert(varValues);
+
     $.ajax({
         url: '/designer/assets/process/apis/predict_variable',
         type: 'POST',
-        data: {'varNames': JSON.stringify(varNames),'varValues':JSON.stringify(varValues)},
+        data: {'varNames': JSON.stringify(varNames),'varValues':JSON.stringify(varValues),'modelId':JSON.stringify(modelId)},
         async: false,
         success: function (response) {
-            window.alert(response);
+            var responseJSON = JSON.parse(response);
+            var content = responseJSON.content;
+            var error = responseJSON.error;
 
 
-            if (response == "FAIL") {
+
+            if (error== "true") {
                 alertify.error(' variables predicting error');
                 returnValue = "ERROR";
                 callback(returnValue);
             } else {
+                alert("Prediced Value  :" + content);
+
                 returnValue = "SUCCESS";
                 callback(returnValue);
             }
